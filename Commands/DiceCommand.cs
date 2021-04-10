@@ -1,4 +1,5 @@
-#pragma warning disable CS1998 // 非同期メソッドは、'await' 演算子がないため、同期的に実行されます
+#pragma warning disable CS1998 // 非同期メソッドは、'await' 演算子がないため、同期的に実行されます / 비동기 메소드는 'await' 연산자가 없어서 동기로 실행
+	
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace Citrine.Core
 		public override string Usage => @"/dice [times] [max]
 /dice [times]d<max>";
 
-		public override string Description => "サイコロを振ります。通常の引数指定か、ダイスロール記法で指定します。省略時は1d6に相当。";
+		public override string Description => "주사위를 굴립니다. 기본값은 1d6이며, 인자는 (굴릴 횟수)d(최대 주사위 숫자)의 형식으로 입력할 수 있습니다.";
 
 		public static readonly Random Rand = new Random();
 
