@@ -1,4 +1,4 @@
-#pragma warning disable CS1998 // 非同期メソッドは、'await' 演算子がないため、同期的に実行されます
+#pragma warning disable CS1998 // 非同期メソッドは、'await' 演算子がないため、同期的に実行されます / 비동기 메소드는 'await' 연산자가 없어서 동기로 실행
 
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,11 +12,11 @@ namespace Citrine.Core
 	{
 		public override string Name => "balloongen";
 
-		public override string Usage => "/balloongen <好きな文字列>";
+		public override string Usage => "/balloongen <문자열>";
 
 		public override string[] Aliases { get; } = { "balloon-gen", "balloon", "genballoon" };
 
-		public override string Description => "ギザギザ吹き出しを作ります。";
+		public override string Description => "뾰족뾰족한 모양의 말풍선을 만들어 냅니다.";
 
 		public override async Task<string> OnActivatedAsync(ICommandSender sender, Server core, IShell shell, string[] args, string body)
 		{
