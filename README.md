@@ -3,6 +3,7 @@
 English ・ [日本語](README-ja.md) ・ [한국어](README-ko.md)
 
 Citrine is a cute-and-clever chatbot plugin for BotBone.
+This repository is for Korean i18n of Citrine.
 
 ## 使用法
 

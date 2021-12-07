@@ -3,6 +3,19 @@
 [English](READM.md) ・ [日本語](README-ja.md) ・ 한국어
 
 Citrine은 귀엽고 똑똑한 BotBone 챗봇 플러그인입니다.
+이 포크에서는 Citrine이 한국어로 말해요.
+
+## 한국어 패치 진행상황
+ - [ ] Commands
+   - [ ] FujiwaraTatsuyaCommand 현지화 (ああああ → あ゛あ゛あ゛あ゛)
+   - [ ] NyaizeCommand, UnyaizeCommand 한국어/영어 지원
+   - [ ] OjisanCommand 현지화
+   - [ ] Nmoudame 현지화 (...)
+   - [X] 나머지
+ - [ ] Modules
+ - [ ] Resources (언어 사전류)
+   - [ ] greeting.json (간단한 문-답)
+   - [ ] ngwords.txt (거시기한단어)
 
 ## 사용법
 

@@ -3,6 +3,7 @@
 [English](README.md) ・ 日本語 ・ [한국어](README-ko.md)
 
 シトリンは、可愛くて賢い chatbot な BotBone プラグインです。
+このフォークのシトリンは韓国語を喋ります。
 
 ## 使用法
 
