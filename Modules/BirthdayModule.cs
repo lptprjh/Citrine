@@ -34,15 +34,16 @@ namespace Citrine.Core.Modules
 			if (m.Success)
 			{
 				var birthday = storage.Get(StorageKey.Birthday, DateTime.MinValue);
-				var output = birthday == DateTime.MinValue ? "知らないよ〜?" : $"{birthday:yyyy年MM月dd日}だよね";
-				await shell.ReplyAsync(n, $"{core.GetNicknameOf(n.User)}の誕生日は" + output);
+				// orig: "知らないよ〜?" "--だよね" "--の誕生日は"
+				var output = birthday == DateTime.MinValue ? "언제인지 모르겠어요..." : $"{birthday:yyyy년 MM월 dd일} 맞죠?";
+				await shell.ReplyAsync(n, $"{core.GetNicknameOf(n.User)}의 생일이 " + output);
 				return true;
 			}
 
 			m = patternSetBirthday.Match(n.Text);
 			if (m.Success)
 			{
-				// 嫌いな人は相手にしない
+				// 싫어하는 사람에게는 말하지 않는다
 				if (core.GetRatingOf(n.User) <= Rating.Hate)
 					return false;
 
@@ -53,11 +54,11 @@ namespace Citrine.Core.Modules
 			m = patternStartBirthdayRegister.Match(n.Text);
 			if (m.Success)
 			{
-				// 嫌いな人は相手にしない
+				// 싫어하는 사람에게는 말하지 않는다
 				if (core.GetRatingOf(n.User) <= Rating.Hate)
 					return false;
 
-				var res = await shell.ReplyAsync(n, "いいよ〜. 誕生日の日付を教えてね(2020/4/10 みたいな形式でお願い)");
+				var res = await shell.ReplyAsync(n, "네! 생일이 언제인지 가르쳐주세요 (년월일 순으로 적어주세요)");
 				if (res != null)
 					core.RegisterContext(res, this, null);
 				return true;
@@ -82,7 +83,7 @@ namespace Citrine.Core.Modules
 
 			if (!m.Success)
 			{
-				await shell.ReplyAsync(n, "ごめん，正しい日付でお願い");
+				await shell.ReplyAsync(n, "어... 날짜를 못 읽겠어요...");
 				return true;
 			}
 
@@ -94,21 +95,21 @@ namespace Citrine.Core.Modules
 			if (core == null || shell == null)
 				return;
 
-			// 祝う対象を抽出する
+			// 축하할 대상을 찾음
 			var birthDayPeople = core.Storage.Records.Where(kv =>
 			{
 				var (userId, storage) = kv;
 
-				// 好感度が Like 以上
+				// 호감도가 Like 이상이고
 				var isLike = core.GetRatingOf(userId) >= Rating.Like;
 
-				// 本日が誕生日である
+				// 오늘이 생일이며
 				var birthday = storage.Get(StorageKey.Birthday, DateTime.MinValue);
 				if (birthday == DateTime.MinValue) return false;
 				var today = DateTime.Today;
 				var birthdayIsToday = birthday.Month == today.Month && birthday.Day == today.Day;
 
-				// まだ祝ってない
+				// 아직 축하해 주지 않았을 때
 				var isNotCelebratedYet = storage.Get(keyLastCelebratedYear, 0) != today.Year;
 
 				return isLike && birthdayIsToday && isNotCelebratedYet;
@@ -119,7 +120,7 @@ namespace Citrine.Core.Modules
 				var user = await shell.GetUserAsync(id);
 				if (user == null) continue;
 
-				await shell.SendDirectMessageAsync(user, $"誕生日おめでとう，{core.GetNicknameOf(user)}");
+				await shell.SendDirectMessageAsync(user, $"생일 축하해요，{core.GetNicknameOf(user)}");
 				storage.Set(keyLastCelebratedYear, DateTime.Today.Year);
 			}
 
@@ -132,19 +133,19 @@ namespace Citrine.Core.Modules
 			{
 				var birthday = DateTime.Parse(value);
 				storage.Set(StorageKey.Birthday, birthday);
-				await shell.ReplyAsync(n, "覚えたよ");
+				await shell.ReplyAsync(n, "알았어요");
 			}
 			catch (FormatException)
 			{
-				await shell.ReplyAsync(n, "ごめん, 正しい日付じゃないよそれ...");
+				await shell.ReplyAsync(n, "어... 날짜를 못 읽겠어요...");
 			}
 		}
 
-		private const string date = @"(\d{1,4}[年/\-]\d{1,2}[月/\-]\d{1,2}[日/\-]?)";
+		private const string date = @"(\d{1,4}[年/\-년]\d{1,2}[月/\-월]\d{1,2}[日/\-일]?)";
 		private static readonly Regex patternBirthday = new Regex(date);
-		private static readonly Regex patternSetBirthday = new Regex($"誕生日は{date}");
-		private static readonly Regex patternStartBirthdayRegister = new Regex("誕生日を?(覚|おぼ)");
-		private static readonly Regex patternQueryBirthday = new Regex("誕生日(わか|分か|知って)");
+		private static readonly Regex patternSetBirthday = new Regex($"(생일[은이]?\s*{date})|({date}이 (.+의|내|얘)?\s*생일)");
+		private static readonly Regex patternStartBirthdayRegister = new Regex("생일을?\s*?(기억|외|말)");
+		private static readonly Regex patternQueryBirthday = new Regex("생일((을?\s*(기억하|외(우고|웠)|알[고아]|말[해할]))|(이?\s*(기억[하나])))");
 		private static readonly string keyLastCelebratedYear = "birthday.last-celebrated";
 
 		private readonly Timer timer;
