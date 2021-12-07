@@ -1,27 +1,28 @@
 # Citrine
 
-シトリンは、可愛くて賢い chatbot な BotBone プラグインです。
+English ・ [日本語](README-ja.md) ・ [한국어](README-ko.md)
+
+Citrine is a cute-and-clever chatbot plugin for BotBone.
 
 ## 使用法
 
-まずはビルド。
+Build Citrine first by following command.
 
 ```
 dotnet build
 ```
 
-BotBoneの /plugins フォルダに、Citrine.dllを導入
-BotBone を起動するだけ
+Copy `Citrine.dll` to `/plugins` folder of BotBone, and you can simply run BotBone to start Citrine.
 
-## 貢献
+## Contribution
 
-- [バグ報告 / 要望](//github.com/xeltica/citrine/issues/new)
-- [プルリクエスト](//github.com/xeltica/citrine/compare)
+- [Bug Report & Suggestion](//github.com/xeltica/citrine/issues/new)
+- [Pull Request](//github.com/xeltica/citrine/compare)
 
-### 以前のコントリビューター
+### Contributers
 
-[その他...](//github.com/Xeltica/Citrine/graphs/contributors)
+[and so on...](//github.com/Xeltica/Citrine/graphs/contributors)
 
-## ライセンス
+## Lisence
 
 [MIT License](LICENSE)
