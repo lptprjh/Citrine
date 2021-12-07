@@ -1,4 +1,4 @@
-#pragma warning disable CS1998 // 非同期メソッドは、'await' 演算子がないため、同期的に実行されます
+#pragma warning disable CS1998 // 비동기 메서드는 'await' 연산자가 없기 때문에 동기적으로 실행됩니다
 using System;
 using System.Linq;
 using System.Text;
@@ -15,7 +15,7 @@ namespace Citrine.Core
 
 		public override string Usage => "/help [name]";
 
-		public override string Description => "コマンドのヘルプを表示します。";
+		public override string Description => "명령어의 도움말을 표시합니다.";
 
 		public override string[] Aliases { get; } = { "h" };
 
@@ -32,7 +32,7 @@ namespace Citrine.Core
 				var name = args[0];
 				var cmd = core.TryGetCommand(name);
 				if (cmd == null)
-					return $"コマンド {name} は見つかりませんでした.";
+					return $"명령어 {name} 를 찾을 수 없습니다.";
 				var sb = new StringBuilder();
 				sb.AppendLine(GetDescription(cmd));
 				sb.Append("使い方: ");
@@ -45,15 +45,15 @@ namespace Citrine.Core
 			}
 		}
 
-		private string GetDescription(ICommand cmd) => $"/{cmd.Name} - {cmd.Description ?? "説明はありません。"}";
+		private string GetDescription(ICommand cmd) => $"/{cmd.Name} - {cmd.Description ?? "에 대한 설명이 없습니다."}";
 
 		private string DumpPermission(PermissionFlag flag)
 		{
 			var sb = new StringBuilder();
 			if (flag.HasFlag(PermissionFlag.AdminOnly))
-				sb.Append("(管理者限定)");
+				sb.Append("(관리자 전용)");
 			if (flag.HasFlag(PermissionFlag.LocalOnly))
-				sb.Append("(ローカルユーザー限定)");
+				sb.Append("(로컬 유저 전용)");
 			return sb.ToString();
 		}
 	}

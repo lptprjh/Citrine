@@ -1,4 +1,4 @@
-#pragma warning disable CS1998 // 非同期メソッドは、'await' 演算子がないため、同期的に実行されます
+#pragma warning disable CS1998 // 비동기 메서드는 'await' 연산자가 없기 때문에 동기적으로 실행됩니다
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +14,7 @@ namespace Citrine.Core
 
 		public override string Usage => "/tobyte <data>";
 
-		public override string Description => "テキストをバイナリダンプします。";
+		public override string Description => "텍스트를 바이너리로 덤프합니다.";
 
 		public override string[] Aliases => new[] { "bin" };
 
@@ -42,7 +42,7 @@ namespace Citrine.Core
 
         public override string Usage => "/repeat <count>, <command-text>";
 
-        public override string Description => "コマンドを繰り返し実行し、結果を改行区切りで返します";
+        public override string Description => "명령어를 반복하여 실행하고, 그 결과를 개행으로 나눠서 출력합니다.";
 
         public override async Task<string> OnActivatedAsync(ICommandSender sender, Server core, IShell shell, string[] args, string body)
         {

@@ -1,4 +1,4 @@
-#pragma warning disable CS1998 // 非同期メソッドは、'await' 演算子がないため、同期的に実行されます
+#pragma warning disable CS1998 // 비동기 메서드는 'await' 연산자가 없기 때문에 동기적으로 실행됩니다
 using System;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -15,13 +15,13 @@ namespace Citrine.Core
 
 		public override string Usage => "/tochar <data>";
 
-		public override string Description => "16進文字列をテキストに変換します。";
+		public override string Description => "16진수 배열을 문자열로 변환합니다.";
 
 		public override async Task<string> OnActivatedAsync(ICommandSender sender, Server core, IShell shell, string[] args, string body)
 		{
 			body = Regex.Replace(body, @"\s", "");
 			if (body.Length % 2 != 0)
-				return "正しい16進文字列ではありません.";
+				return "16진수 배열이 올바르지 않습니다.";
 
 			var data = new byte[body.Length / 2];
 			for (var i = 0; i < body.Length / 2; i++)

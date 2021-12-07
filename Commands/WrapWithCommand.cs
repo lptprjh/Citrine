@@ -1,4 +1,4 @@
-#pragma warning disable CS1998 // 非同期メソッドは、'await' 演算子がないため、同期的に実行されます
+#pragma warning disable CS1998 // 비동기 메서드는 'await' 연산자가 없기 때문에 동기적으로 실행됩니다
 using System.Threading.Tasks;
 using BotBone.Core;
 using BotBone.Core.Api;
@@ -12,7 +12,7 @@ namespace Citrine.Core
 
 		public override string Usage => "/wrapwith <text-to-wrap> <text>";
 
-		public override string Description => "指定した文字列で囲まれた文字列を返します。";
+		public override string Description => "지정한 텍스트로 문자열을 감쌉니다.";
 
 		public override async Task<string> OnActivatedAsync(ICommandSender sender, Server core, IShell shell, string[] args, string body)
 		{

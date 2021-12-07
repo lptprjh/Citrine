@@ -1,4 +1,4 @@
-#pragma warning disable CS1998 // 非同期メソッドは、'await' 演算子がないため、同期的に実行されます
+#pragma warning disable CS1998 // 비동기 메서드는 'await' 연산자가 없기 때문에 동기적으로 실행됩니다
 using System.Threading.Tasks;
 using BotBone.Core;
 using BotBone.Core.Api;
@@ -10,9 +10,9 @@ namespace Citrine.Core
 	{
 		public override string Name => "pipeline";
 
-		public override string Usage => "/pipeline (これ以降に改行で区切ってコマンドを書いて下さい。)";
+		public override string Usage => "/pipeline (실행할 명령어를 개행으로 구분하여 나열)";
 
-		public override string Description => "各種コマンドを連結して実行します。前のコマンドの出力は、次のコマンドの末尾に追記されます。";
+		public override string Description => "각각의 명령어를 연결하여 실행합니다. 앞쪽 명령어의 출력을 뒤쪽 명령어의 인자로 덧붙입니다.";
 
 		public override Task<string> OnActivatedAsync(ICommandSender sender, Server core, IShell shell, string[] args, string body)
 		{
